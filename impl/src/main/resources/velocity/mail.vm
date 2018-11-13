@@ -1,0 +1,32 @@
+<html>
+<head>
+    <base target="_blank" />
+    <style type="text/css">
+        ::-webkit-scrollbar{ display: none; }
+    </style>
+    <style id="cloudAttachStyle" type="text/css">
+        #divNeteaseBigAttach, #divNeteaseBigAttach_bak{display:none;}
+    </style>
+    <style id="blockquoteStyle" type="text/css">blockquote{display:none;}</style>
+
+    <style type="text/css">
+        body{font-size:14px;font-family:arial,verdana,sans-serif;line-height:1.666;padding:0;margin:0;overflow:auto;white-space:normal;word-wrap:break-word;min-height:100px}
+        td, input, button, select, body{font-family:Helvetica, 'Microsoft Yahei', verdana}
+        pre {white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;width:95%}
+        th,td{font-family:arial,verdana,sans-serif;line-height:1.666}
+        img{ border:0}
+        header,footer,section,aside,article,nav,hgroup,figure,figcaption{display:block}
+    </style>
+
+    <style id="ntes_link_color" type="text/css">a,td a{color:#064977}</style>
+
+</head>
+<body>
+　　<div style="padding:0 10px 13px;font-size:14px">
+    <p style="padding:10px 0 0;">Hello,${user}：</p>
+    <p>Welcome to Uplive App. Please click on link to verify your email .<a href="${content}" target="_blank" style="color:#326FA8;text-decoration: none;">click here please</a></p>
+    <p>If you are unable to click this link, copy it to your browser's address bar to verify your email again.</p>
+    <p><a href="${content}" target="_blank" style="color:#326FA8;text-decoration: none;">${content}</a></p>
+    <p>If not your operation, please ignore this message.</p>
+</body>
+</html>

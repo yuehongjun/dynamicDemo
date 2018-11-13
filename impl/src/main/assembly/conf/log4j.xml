@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://jakarta.apache.org/log4j/ ">
+
+    <appender name="STDOUT" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/up-push-query/stdout_${dubbo.protocol.port}.log"/>
+        <param name="DatePattern" value="'.'yyyyMMdd"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss} %c{1}.%M-[%p] %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="DEBUG"/>
+            <param name="levelMax" value="ERROR"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <appender name="STDERR" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/up-push-query/stderr_${dubbo.protocol.port}.log"/>
+        <param name="Threshold" value="ERROR"/>
+        <param name="DatePattern" value="'.'yyyyMMdd"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss} %c{1}.%M-[%p] %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="ERROR"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <logger name="com.asiainno" additivity="false">
+        <level value="${logging.level}"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+
+    <!--
+    <logger name="com.ibatis" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+
+    <logger name="java.sql.Connection" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+    <logger name="java.sql.Statement" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+    <logger name="java.sql.PreparedStatement" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+    <logger name="java.sql.ResultSet" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </logger>
+    -->
+
+    <root>
+        <level value="INFO"/>
+        <!--不再向resin标准输出中写日志
+        <appender-ref ref="console"/>
+        -->
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDERR"/>
+    </root>
+</log4j:configuration>

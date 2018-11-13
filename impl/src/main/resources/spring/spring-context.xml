@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+
+    <bean id="propertyResources" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <value>classpath:config.properties</value>
+                <value>classpath:specialconfig.properties</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" ref="propertyResources"/>
+    </bean>
+
+    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations" ref="propertyResources"/>
+    </bean>
+
+    <!--初始化属性管理类-->
+    <bean id="propertyManager" class="com.asiainno.base.utils.PropertyManager">
+        <property name="configProperties" ref="configProperties"/>
+    </bean>
+
+    <bean id="constants" class="com.asiainno.uplive.push.constants.Constants">
+        <property name="propertyManager" ref="propertyManager"/>
+    </bean>
+
+    <context:component-scan base-package="com.asiainno"/>
+    <context:annotation-config/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${task.core.pool.size}"/>
+        <property name="maxPoolSize" value="${task.max.pool.size}"/>
+        <property name="keepAliveSeconds" value="${task.keealive.seconds}"/>
+        <property name="WaitForTasksToCompleteOnShutdown" value="true"/>
+    </bean>
+
+    <import resource="spring-db.xml"/>
+    <import resource="spring-mybatis.xml"/>
+    <import resource="spring-dubbo.xml"/>
+</beans>
