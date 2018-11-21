@@ -2,7 +2,7 @@ package com.asiainno.uplive.push.api.model;
 
 import java.io.Serializable;
 
-public class UserPushInfo implements Serializable {
+public class UserInfoPush implements Serializable {
     private Long uid;
     private int pushType;
     private String pushToken;
@@ -58,6 +58,6 @@ public class UserPushInfo implements Serializable {
         this.pushType = pushType;
     }
 
-    public UserPushInfo() {
+    public UserInfoPush() {
     }
 }

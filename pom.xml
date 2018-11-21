@@ -26,9 +26,11 @@
 
         <base.utils.version>3.3.0-SNAPSHOT</base.utils.version>
         <base.dao.version>1.1-SNAPSHOT</base.dao.version>
-
+	
         <dubbo_version>2.5.3</dubbo_version>
         <javassist_version>3.15.0-GA</javassist_version>
+        
+        <service.version>3.5-SETTING-SNAPSHOT</service.version>
 
 
     </properties>

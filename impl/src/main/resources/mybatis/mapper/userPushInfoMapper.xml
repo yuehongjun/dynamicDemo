@@ -21,5 +21,32 @@
         user_push_info
 
     </select>
+    
+    
+    <select id="selectUserInfoByCountryCode" resultMap="userPushInfo" parameterType="java.util.Map">
+        select
+        <include refid="Column_List"/>
+        from topic_user_push_#{tableSuffix,jdbcType=VARCHAR}_dt where push_token!='' 
+         <if test="pushUserType != null" >
+            and push_user_type in 
+            <foreach collection="pushUserType" item="item"  open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="inclusiveFeature != null" >
+            and feature in
+            <foreach collection="inclusiveFeature" item="item"  open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="exclusiveFeature != null" >
+            and feature not in
+            <foreach collection="exclusiveFeature" item="item"  open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        order by grade desc,last_time  desc 
+        limit #{start,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+    </select>
 
 </mapper>
