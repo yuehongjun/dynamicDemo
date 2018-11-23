@@ -8,8 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>push-query-impl</artifactId>
-    <name>uplive-push-impl</name>
+    <artifactId>up-push-query-impl</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
