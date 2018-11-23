@@ -18,7 +18,7 @@ public class UserPushService implements IUserPushService {
 
     @Override
     public List<UserInfoPush> getUserPushInfos(String country) {
-        return userInfoPushDao.batchGetPushInfo();
+        return userInfoPushDao.batchGetPushInfo(country);
     }
     
     /**
@@ -28,9 +28,9 @@ public class UserPushService implements IUserPushService {
      */
     @Override
     public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Integer start, Integer num) {
-        List flags = null;
+        List<Integer> flags = null;
         if(flag!= null){
-        	flags = Arrays.asList(flag.split(","));
+        	flags = Arrays.asList(Integer.valueOf(flag));
         }
         return userInfoPushDao.batchGetUserInfos(feature, country, flags, start, num);
     }
