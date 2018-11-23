@@ -5,13 +5,13 @@
         <result column="uid" property="uid" jdbcType="BIGINT"/>
         <result column="pushType" property="pushType" jdbcType="INTEGER"/>
         <result column="pushToken" property="pushToken" jdbcType="VARCHAR"/>
-        <result column="country" property="country" jdbcType="VARCHAR"/>
+        <result column="countryCode" property="country" jdbcType="VARCHAR"/>
         <result column="language" property="language" jdbcType="VARCHAR"/>
-        <result column="lastLoginTime" property="lastLoginTime" jdbcType="INTEGER"/>
+        <result column="lastTime" property="lastLoginTime" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        uid,pushType,pushToken,country,language,lastLoginTime
+        uid,pushType,pushToken,countryCode,language,lastTime
     </sql>
 
     <select id="selectByAudienceCountryCode" resultMap="userPushInfo">
@@ -26,9 +26,9 @@
     <select id="selectUserInfoByCountryCode" resultMap="userPushInfo" parameterType="java.util.Map">
         select
         <include refid="Column_List"/>
-        from topic_user_push_#{tableSuffix,jdbcType=VARCHAR}_dt where push_token!='' 
+        from topic_user_push_#{tableSuffix,jdbcType=VARCHAR}_dt where pushToken!='' 
          <if test="pushUserType != null" >
-            and push_user_type in 
+            and pushUserType in 
             <foreach collection="pushUserType" item="item"  open="(" close=")" separator=",">
                 #{item}
             </foreach>
@@ -45,7 +45,7 @@
                 #{item}
             </foreach>
         </if>
-        order by grade desc,last_time  desc 
+        order by grade desc,lastTime  desc 
         limit #{start,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
     </select>
 
