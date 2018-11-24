@@ -223,12 +223,6 @@
             <version>${base.dao.version}</version>
         </dependency>
 
-		<dependency>
-		  <groupId>com.aig</groupId>
-		  <artifactId>aig-logger</artifactId>
-		  <version>0.1.0-jdk7-SNAPSHOT</version>
-		</dependency>
-		
         <dependency>
             <groupId>com.asiainno</groupId>
             <artifactId>push-query-api</artifactId>
