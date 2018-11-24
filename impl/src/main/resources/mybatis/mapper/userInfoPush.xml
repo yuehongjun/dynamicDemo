@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="userPushInfo">
-    <resultMap id="userPushInfo" type="userPushInfo">
+<mapper namespace="userInfoPush">
+    <resultMap id="userInfoPush" type="userInfoPush">
         <result column="uid" property="uid" jdbcType="BIGINT"/>
         <result column="pushType" property="pushType" jdbcType="INTEGER"/>
         <result column="pushToken" property="pushToken" jdbcType="VARCHAR"/>
@@ -14,7 +14,7 @@
         uid,pushType,pushToken,countryCode,language,lastTime
     </sql>
 
-    <select id="selectByAudienceCountryCode" resultMap="userPushInfo">
+    <select id="selectByAudienceCountryCode" resultMap="userInfoPush">
         select
         <include refid="Base_Column_List"/>
         from
@@ -23,26 +23,15 @@
     </select>
     
     
-    <select id="selectUserInfoByCountryCode" resultMap="userPushInfo" parameterType="java.util.Map">
+    <select id="selectUserInfoByCountryCode" resultMap="userInfoPush" parameterType="java.util.Map">
         select
         <include refid="Column_List"/>
         from topic_user_push_dt where pushToken!='' 
          and countryCode=#{countryCode,jdbcType=VARCHAR}
+         and feature = #{feature,jdbcType=INTEGER}
          <if test="pushUserType != null" >
             and pushUserType in 
             <foreach collection="pushUserType" item="item"  open="(" close=")" separator=",">
-                #{item}
-            </foreach>
-        </if>
-        <if test="inclusiveFeature != null" >
-            and feature in
-            <foreach collection="inclusiveFeature" item="item"  open="(" close=")" separator=",">
-                #{item}
-            </foreach>
-        </if>
-        <if test="exclusiveFeature != null" >
-            and feature not in
-            <foreach collection="exclusiveFeature" item="item"  open="(" close=")" separator=",">
                 #{item}
             </foreach>
         </if>

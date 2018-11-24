@@ -10,10 +10,10 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="userPushInfo" type="com.asiainno.uplive.push.api.model.UserPushInfo"/>
+        <typeAlias alias="userInfoPush" type="com.asiainno.uplive.push.api.model.UserInfoPush"/>
     </typeAliases>
 
     <mappers>
-        <mapper resource="mybatis/mapper/userPushInfoMapper.xml"/>
+        <mapper resource="mybatis/mapper/userInfoPushMapper.xml"/>
     </mappers>
 </configuration>
