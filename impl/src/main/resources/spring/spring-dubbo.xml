@@ -17,8 +17,5 @@
     <!--发布的服务-->
     <dubbo:service interface="com.asiainno.uplive.push.api.service.IUserPushService" ref="userPushService" timeout="2000"/>
     
-	<!-- 引入服务 -->
-	<dubbo:reference interface="com.asiainno.uplive.user.service.IFeatureService" id="featureService" timeout="3000" retries="3"/>
-    
     <dubbo:consumer check="false"/>
 </beans>
