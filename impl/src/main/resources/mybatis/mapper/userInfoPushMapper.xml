@@ -18,7 +18,7 @@
         select
         <include refid="Base_Column_List"/>
         from
-        user_push_info
+        topic_user_push_dt
 
     </select>
     
