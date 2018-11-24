@@ -28,10 +28,10 @@ public class UserPushInfoDao extends BatisEntityDao {
         return getSqlSession().selectList("userPushInfo.selectUserInfoByCountryCode");
     }
     
-    public List<UserInfoPush> batchGetUserInfos(List<Integer> inclusiveFeatureList, List<Integer> exclusiveFeatureList, String tableId, List pushUserTypes, Integer start, Integer num) {
+    public List<UserInfoPush> batchGetUserInfos(List<Integer> inclusiveFeatureList, List<Integer> exclusiveFeatureList, String countryCode, List pushUserTypes, Integer start, Integer num) {
     	List<UserInfoPush> userPushInfos =null;
     	Map<String, Object> con = new HashMap<>();
-        con.put("tableSuffix", tableId);
+        con.put("countryCode", countryCode);
         con.put("pushUserType", pushUserTypes);
         con.put("inclusiveFeature", com.alibaba.dubbo.common.utils.CollectionUtils.isNotEmpty(inclusiveFeatureList)? inclusiveFeatureList: null);
         con.put("exclusiveFeature", com.alibaba.dubbo.common.utils.CollectionUtils.isNotEmpty(exclusiveFeatureList)? exclusiveFeatureList: null);

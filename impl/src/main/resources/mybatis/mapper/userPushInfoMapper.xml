@@ -26,7 +26,8 @@
     <select id="selectUserInfoByCountryCode" resultMap="userPushInfo" parameterType="java.util.Map">
         select
         <include refid="Column_List"/>
-        from topic_user_push_#{tableSuffix,jdbcType=VARCHAR}_dt where pushToken!='' 
+        from topic_user_push_dt where pushToken!='' 
+         and countryCode=#{countryCode,jdbcType=VARCHAR}
          <if test="pushUserType != null" >
             and pushUserType in 
             <foreach collection="pushUserType" item="item"  open="(" close=")" separator=",">
@@ -46,7 +47,7 @@
             </foreach>
         </if>
         order by grade desc,lastTime  desc 
-        limit #{start,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+        limit #{limit,jdbcType=INTEGER} OFFSET #{start,jdbcType=INTEGER}
     </select>
 
 </mapper>
