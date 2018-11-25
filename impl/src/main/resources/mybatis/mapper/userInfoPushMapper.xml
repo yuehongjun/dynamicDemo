@@ -25,7 +25,7 @@
     </select>
     
     
-    <select id="selectUserInfoByCountryCode" resultMap="userInfoPush" parameterType="com.asiainno.uplive.push.common.DaoRequestInfo">
+    <select id="selectUserInfoByCountryCode" resultMap="userInfoPush" parameterType="java.util.Map">
         select
         <include refid="Base_Column_List"/>
         from topic_user_push_dt where pushToken!=''
