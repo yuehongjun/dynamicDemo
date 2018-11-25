@@ -1,6 +1,6 @@
 package com.asiainno.uplive.push.service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -32,20 +32,19 @@ public class UserPushService implements IUserPushService {
     public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Integer start, Integer num) {
         List<Integer> flags = null;
         if(flag!= null){
-        	flags = Arrays.asList(converInts(flag.split(",")));
+        	flags = converInts(flag.split(","));
         }
         return userInfoPushDao.batchGetUserInfos(feature, country, flags, start, num);
     }
     
-    private static Integer[] converInts(String[] flags){
-    	Integer[] flagInt = new Integer[flags.length];
-    	int j = 0;
+    private static ArrayList<Integer> converInts(String[] flags){
+    	ArrayList<Integer> list = new ArrayList<Integer>();
     	for (int i = 0; i < flags.length; i++) {
     		if(StringUtils.isNotEmpty(flags[i])){
-    			flagInt[j++] = Integer.parseInt(flags[i]);
+    			list.add(Integer.parseInt(flags[i]));
     		}
 		}
-    	return flagInt;
+    	return list;
     }
-
+    
 }
