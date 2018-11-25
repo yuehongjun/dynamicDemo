@@ -14,7 +14,9 @@ public class UserInfoPushDao extends BatisEntityDao {
 
 
     //根据类型，批量查询
-    public List<UserInfoPush> batchGetPushInfo() {
+    public List<UserInfoPush> batchGetPushInfo(String countryCode) {
+    	Map<String, String> params = new HashMap<>();
+        params.put("countryCode", countryCode);
         return getSqlSession().selectList("userInfoPush.selectByAudienceCountryCode");
     }
     

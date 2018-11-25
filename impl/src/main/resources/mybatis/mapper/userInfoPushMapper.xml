@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="userInfoPush">
     <resultMap id="userInfoPush" type="userInfoPush">
-        <result column="uid" property="uid" jdbcType="INTEGER"/>
-        <result column="pushType" property="pushType" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="pushType" property="pushType" jdbcType="BIGINT"/>
         <result column="pushToken" property="pushToken" jdbcType="VARCHAR"/>
         <result column="countryCode" property="country" jdbcType="VARCHAR"/>
         <result column="language" property="language" jdbcType="VARCHAR"/>
-        <result column="lastTime" property="lastLoginTime" jdbcType="INTEGER"/>
+        <result column="lastTime" property="lastLoginTime" jdbcType="BIGINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
