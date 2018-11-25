@@ -31,7 +31,12 @@ public class UserInfoPushDao extends BatisEntityDao {
 
     public List<UserInfoPush> batchGetUserInfos(Integer feature, String countryCode, List<Integer> pushUserTypes, Integer start, Integer num) {
         List<UserInfoPush> userPushInfos = null;
-        DaoRequestInfo con = new DaoRequestInfo(feature, countryCode, pushUserTypes, start, num);
+        Map<String, Object> con =  new HashMap<>();
+        con.put("feature", feature);
+        con.put("countryCode", countryCode);
+        con.put("pushUserTypes", pushUserTypes);
+        con.put("start", start);
+        con.put("num", num);
         //设置dbKey
 //        DBContextHolder.setDBKey(Long.valueOf(dbKey));
         userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode", con);
