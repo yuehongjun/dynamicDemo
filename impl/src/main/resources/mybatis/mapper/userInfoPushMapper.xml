@@ -38,7 +38,7 @@
             </foreach>
         </if>
         order by grade desc,lastTime  desc 
-        limit #{start} OFFSET #{num}
+        limit #{num} OFFSET #{start}
     </select>
 
 </mapper>
