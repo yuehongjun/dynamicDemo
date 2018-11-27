@@ -46,7 +46,7 @@ public class UserInfoPushDao extends BatisEntityDao {
         Long startTime = System.currentTimeMillis();
         userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode", con);
         Long endTime = System.currentTimeMillis();
-        logger.info("test Dao 耗时："+(endTime-startTime));
+        logger.info("test Dao 耗时："+(endTime-startTime)+"   获取数据条数"+userPushInfos.size());
         return userPushInfos;
     }
 
