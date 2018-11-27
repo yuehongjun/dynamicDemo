@@ -39,7 +39,7 @@
             </foreach>
         </if>
         order by uid
-        limit #{num} OFFSET #{start}
+        limit #{num}
     </select>
 
 </mapper>
