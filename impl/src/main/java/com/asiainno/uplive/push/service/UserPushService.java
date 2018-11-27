@@ -36,7 +36,7 @@ public class UserPushService implements IUserPushService {
     public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Integer start, Integer num) {
     	Long startTime = System.currentTimeMillis();
         List<Integer> flags = null;
-        if(flag!= null){
+        if(StringUtils.isNotEmpty(flag)){
         	flags = converInts(flag.split(","));
         }
         Long endTime = System.currentTimeMillis();
