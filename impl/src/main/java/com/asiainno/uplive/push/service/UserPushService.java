@@ -33,15 +33,12 @@ public class UserPushService implements IUserPushService {
      * yhj
      */
     @Override
-    public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Long uid, Integer start, Integer num) {
-    	Long startTime = System.currentTimeMillis();
+    public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Long uid, Integer num) {
         List<Integer> flags = null;
         if(StringUtils.isNotEmpty(flag)){
         	flags = converInts(flag.split(","));
         }
-        Long endTime = System.currentTimeMillis();
-        logger.info("test service 耗时："+(endTime-startTime));
-        return userInfoPushDao.batchGetUserInfos(feature, country, flags, uid, start, num);
+        return userInfoPushDao.batchGetUserInfos(feature, country, flags, uid, num);
     }
     
     private static ArrayList<Integer> converInts(String[] flags){

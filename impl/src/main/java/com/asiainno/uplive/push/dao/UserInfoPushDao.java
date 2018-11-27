@@ -34,23 +34,16 @@ public class UserInfoPushDao extends BatisEntityDao {
         return getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode");
     }
 
-    public List<UserInfoPush> batchGetUserInfos(Integer feature, String countryCode, List<Integer> pushUserTypes,  Long uid, Integer start, Integer num) {
+    public List<UserInfoPush> batchGetUserInfos(Integer feature, String countryCode, List<Integer> pushUserTypes,  Long uid, Integer num) {
         List<UserInfoPush> userPushInfos = null;
         Map<String, Object> con =  new HashMap<>();
         con.put("feature", feature);
         con.put("countryCode", countryCode);
         con.put("pushUserTypes", pushUserTypes);
-        con.put("start", start);
         con.put("num", num);
         con.put("uid", uid);
         //设置dbKey
-        logger.info("test dao 参数为：feature："+feature+"   countryCode:"+countryCode+"  pushUserTypes"+pushUserTypes+"    uid:"+uid+"    start:"+start+"   num"+num);
-        logger.info("test dao 参数为：con："+ItvJsonUtil.writeValue(con));
-//        DBContextHolder.setDBKey(Long.valueOf(dbKey));
-        Long startTime = System.currentTimeMillis();
         userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode", con);
-        Long endTime = System.currentTimeMillis();
-        logger.info("test Dao 耗时："+(endTime-startTime)+"   获取数据条数"+userPushInfos.size());
         return userPushInfos;
     }
 
