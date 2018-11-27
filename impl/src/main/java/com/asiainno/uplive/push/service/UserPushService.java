@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import com.asiainno.uplive.push.dao.UserInfoPushDao;
 @Service
 public class UserPushService implements IUserPushService {
 
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	 
     @Autowired
     private UserInfoPushDao userInfoPushDao;
     
@@ -30,10 +34,13 @@ public class UserPushService implements IUserPushService {
      */
     @Override
     public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Integer start, Integer num) {
+    	Long startTime = System.currentTimeMillis();
         List<Integer> flags = null;
         if(flag!= null){
         	flags = converInts(flag.split(","));
         }
+        Long endTime = System.currentTimeMillis();
+        logger.info("test service 耗时："+(endTime-startTime));
         return userInfoPushDao.batchGetUserInfos(feature, country, flags, start, num);
     }
     

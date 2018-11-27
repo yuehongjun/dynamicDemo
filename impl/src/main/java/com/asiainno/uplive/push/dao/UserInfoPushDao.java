@@ -2,6 +2,9 @@ package com.asiainno.uplive.push.dao;
 
 import com.asiainno.uplive.push.api.model.UserInfoPush;
 import com.asiainno.uplive.push.base.BatisEntityDao;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -11,6 +14,7 @@ import java.util.Map;
 @Repository
 public class UserInfoPushDao extends BatisEntityDao {
 
+	 private Logger logger = LoggerFactory.getLogger(getClass());
 
     //根据类型，批量查询
     public List<UserInfoPush> batchGetPushInfo(String countryCode) {
@@ -39,7 +43,10 @@ public class UserInfoPushDao extends BatisEntityDao {
         con.put("num", num);
         //设置dbKey
 //        DBContextHolder.setDBKey(Long.valueOf(dbKey));
+        Long startTime = System.currentTimeMillis();
         userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode", con);
+        Long endTime = System.currentTimeMillis();
+        logger.info("test Dao 耗时："+(endTime-startTime));
         return userPushInfos;
     }
 
