@@ -16,7 +16,7 @@ public interface IUserPushService {
      * 最近三个月数据
      * yhj
      */
-    public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Integer start, Integer num);
+    public List<UserInfoPush> getUserPushInfos(String country, Integer feature, String flag, Long uid, Integer start, Integer num);
 
 
 }

@@ -31,13 +31,14 @@
         from topic_user_push_dt where pushToken!=''
          and countryCode=#{countryCode}
          and feature = #{feature}
+         and uid > #{uid}
          <if test="pushUserTypes != null" >
             and pushUserType in 
             <foreach collection="pushUserTypes" item="item"  open="(" close=")" separator=",">
                 #{item}
             </foreach>
         </if>
-        order by grade desc,lastTime  desc 
+        order by uid
         limit #{num} OFFSET #{start}
     </select>
 

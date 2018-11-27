@@ -34,7 +34,7 @@ public class UserInfoPushDao extends BatisEntityDao {
         return getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode");
     }
 
-    public List<UserInfoPush> batchGetUserInfos(Integer feature, String countryCode, List<Integer> pushUserTypes, Integer start, Integer num) {
+    public List<UserInfoPush> batchGetUserInfos(Integer feature, String countryCode, List<Integer> pushUserTypes,  Long uid, Integer start, Integer num) {
         List<UserInfoPush> userPushInfos = null;
         Map<String, Object> con =  new HashMap<>();
         con.put("feature", feature);
@@ -42,6 +42,7 @@ public class UserInfoPushDao extends BatisEntityDao {
         con.put("pushUserTypes", pushUserTypes);
         con.put("start", start);
         con.put("num", num);
+        con.put("uid", uid);
         //设置dbKey
         logger.info("test dao 参数为：feature："+feature+"   countryCode:"+countryCode+"  pushUserTypes"+pushUserTypes+"    start:"+start+"   num"+num);
         logger.info("test dao 参数为：con："+ItvJsonUtil.writeValue(con));
