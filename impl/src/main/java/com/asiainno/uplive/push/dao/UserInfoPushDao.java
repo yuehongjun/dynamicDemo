@@ -44,7 +44,7 @@ public class UserInfoPushDao extends BatisEntityDao {
         con.put("num", num);
         con.put("uid", uid);
         //设置dbKey
-        logger.info("test dao 参数为：feature："+feature+"   countryCode:"+countryCode+"  pushUserTypes"+pushUserTypes+"    start:"+start+"   num"+num);
+        logger.info("test dao 参数为：feature："+feature+"   countryCode:"+countryCode+"  pushUserTypes"+pushUserTypes+"    uid:"+uid+"    start:"+start+"   num"+num);
         logger.info("test dao 参数为：con："+ItvJsonUtil.writeValue(con));
 //        DBContextHolder.setDBKey(Long.valueOf(dbKey));
         Long startTime = System.currentTimeMillis();
