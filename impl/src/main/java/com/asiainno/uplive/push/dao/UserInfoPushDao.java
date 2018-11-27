@@ -1,5 +1,6 @@
 package com.asiainno.uplive.push.dao;
 
+import com.asiainno.base.utils.ItvJsonUtil;
 import com.asiainno.uplive.push.api.model.UserInfoPush;
 import com.asiainno.uplive.push.base.BatisEntityDao;
 
@@ -42,6 +43,8 @@ public class UserInfoPushDao extends BatisEntityDao {
         con.put("start", start);
         con.put("num", num);
         //设置dbKey
+        logger.info("test dao 参数为：feature："+feature+"   countryCode:"+countryCode+"  pushUserTypes"+pushUserTypes+"    start:"+start+"   num"+num);
+        logger.info("test dao 参数为：con："+ItvJsonUtil.writeValue(con));
 //        DBContextHolder.setDBKey(Long.valueOf(dbKey));
         Long startTime = System.currentTimeMillis();
         userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode", con);
