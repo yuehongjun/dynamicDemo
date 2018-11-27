@@ -39,7 +39,6 @@
         <appender-ref ref="STDERR"/>
     </logger>
 
-    <!--
     <logger name="com.ibatis" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="STDOUT"/>
@@ -81,7 +80,6 @@
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="STDERR"/>
     </logger>
-    -->
 
     <root>
         <level value="INFO"/>
