@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 	http://code.alibabatech.com/schema/dubbo
 	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" threads="${dubbo.protocol.threads}"></dubbo:protocol>
+    <dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" threads="500"></dubbo:protocol>
     <dubbo:registry address="${dubbo.registry.address}"/>
 
     <dubbo:annotation package="com.asiainno"></dubbo:annotation>
