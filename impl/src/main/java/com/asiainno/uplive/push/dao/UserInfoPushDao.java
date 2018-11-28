@@ -43,8 +43,10 @@ public class UserInfoPushDao extends BatisEntityDao {
         con.put("num", num);
         con.put("uid", uid);
         //设置dbKey
-        logger.info("test con:"+ItvJsonUtil.writeValue(con));
+        long startTime = System.currentTimeMillis();
         userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode", con);
+        long endTime = System.currentTimeMillis();
+        logger.info("test con:"+ItvJsonUtil.writeValue(con)+"  耗时："+(endTime-startTime));
         return userPushInfos;
     }
 
