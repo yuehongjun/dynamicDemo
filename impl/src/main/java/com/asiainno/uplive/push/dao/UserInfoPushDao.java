@@ -1,5 +1,6 @@
 package com.asiainno.uplive.push.dao;
 
+import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.asiainno.base.utils.ItvJsonUtil;
 import com.asiainno.uplive.push.api.model.UserInfoPush;
 import com.asiainno.uplive.push.base.BatisEntityDao;
@@ -46,9 +47,40 @@ public class UserInfoPushDao extends BatisEntityDao {
         long startTime = System.currentTimeMillis();
         userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCode", con);
         long endTime = System.currentTimeMillis();
-        logger.info("test con:"+ItvJsonUtil.writeValue(con)+"  耗时："+(endTime-startTime));
+        logger.info("test batchGetUserInfos:"+ItvJsonUtil.writeValue(con)+"  耗时："+(endTime-startTime));
         return userPushInfos;
     }
+    
+    public List<UserInfoPush> batchGetUserInfosByFeature(List<Integer> inclusiveFeatureList, List<Integer> exclusiveFeatureList, String countryCode, List<Integer> pushUserTypes,  Long uid, Integer num) {
+        List<UserInfoPush> userPushInfos = null; 
+        Map<String, Object> con =  new HashMap<>();
+        con.put("inclusiveFeature", CollectionUtils.isNotEmpty(inclusiveFeatureList)? inclusiveFeatureList: null);
+        con.put("exclusiveFeature", CollectionUtils.isNotEmpty(exclusiveFeatureList)? exclusiveFeatureList: null);
+        con.put("countryCode", countryCode);
+        con.put("pushUserTypes", pushUserTypes);
+        con.put("num", num);
+        con.put("uid", uid);
+        //设置dbKey
+        long startTime = System.currentTimeMillis();
+        userPushInfos = getSqlSession().selectList("userInfoPush.selectUserInfoByCountryCodeFeature", con);
+        long endTime = System.currentTimeMillis();
+        logger.info("test batchGetUserInfosByFeature:"+ItvJsonUtil.writeValue(con)+"  耗时："+(endTime-startTime));
+        return userPushInfos;
+    }
+    
+    public static void main(String[] args) {
+    	 List<UserInfoPush> userPushInfos = null;
+         Map<String, Object> con =  new HashMap<>();
+         con.put("feature", 0);
+         con.put("countryCode", "CN");
+         con.put("pushUserTypes", "1,2,34");
+         con.put("num", 1000);
+         con.put("uid", 876473743);
+         //设置dbKey
+         long startTime = System.currentTimeMillis();
+         long endTime = System.currentTimeMillis();
+         System.out.println("test con:"+ItvJsonUtil.writeValue(con)+"  耗时："+(endTime-startTime));
+	}
 
 }
 

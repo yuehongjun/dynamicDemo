@@ -12,6 +12,7 @@ public interface IUserPushService {
     public List<UserInfoPush> getUserPushInfos(String country);
     
     /**
+     * 声包，虎鲸包，主包（其他）。三种 ［虎鲸为224，声播为6666，其他均按照uplive的feature 0来处理］
      * 批量获取用户信息
      * 最近三个月数据
      * yhj

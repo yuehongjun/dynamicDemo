@@ -41,5 +41,33 @@
         order by uid
         limit #{num}
     </select>
+    
+    <select id="selectUserInfoByCountryCodeFeature" resultType="userInfoPush" parameterType="java.util.Map">
+        select 
+		<include refid="Base_Column_List"/>
+        from topic_user_push_dt where pushToken!=''
+        and countryCode=#{countryCode}
+        and uid > #{uid}
+        <if test="pushUserTypes != null" >
+            and pushUserType in 
+            <foreach collection="pushUserTypes" item="item"  open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="inclusiveFeature != null" >
+            and feature in
+            <foreach collection="inclusiveFeature" item="item"  open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="exclusiveFeature != null" >
+            and feature not in
+            <foreach collection="exclusiveFeature" item="item"  open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+         order by uid
+        limit #{num}
+    </select>
 
 </mapper>

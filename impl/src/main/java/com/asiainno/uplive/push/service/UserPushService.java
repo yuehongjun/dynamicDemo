@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.asiainno.uplive.push.api.model.UserInfoPush;
 import com.asiainno.uplive.push.api.service.IUserPushService;
 import com.asiainno.uplive.push.dao.UserInfoPushDao;
+import com.asiainno.uplive.user.common.EnumConstant;
 
 @Service
 public class UserPushService implements IUserPushService {
@@ -28,6 +29,7 @@ public class UserPushService implements IUserPushService {
     }
     
     /**
+     * 声包，虎鲸包，主包（其他）。三种 ［虎鲸为224，声播为6666，其他均按照uplive的feature 0来处理］
      * 批量获取用户信息
      * 最近三个月数据
      * yhj
@@ -38,7 +40,15 @@ public class UserPushService implements IUserPushService {
         if(StringUtils.isNotEmpty(flag)){
         	flags = converInts(flag.split(","));
         }
-        return userInfoPushDao.batchGetUserInfos(feature, country, flags, uid, num);
+        List<Integer> inclusiveFeatureList = new ArrayList<Integer>();
+        List<Integer> exclusiveFeatureList = new ArrayList<Integer>();
+        if(feature != null && (feature == EnumConstant.FEATURE_UPVOICE_MAIN || feature == EnumConstant.FEATURE_ORCALIVE_MAIN)){
+        	inclusiveFeatureList.add(feature);
+        }else{
+        	exclusiveFeatureList.add(EnumConstant.FEATURE_UPVOICE_MAIN);//声包
+        	exclusiveFeatureList.add(EnumConstant.FEATURE_ORCALIVE_MAIN);//虎鲸
+        }
+        return userInfoPushDao.batchGetUserInfosByFeature(inclusiveFeatureList, exclusiveFeatureList, country, flags, uid, num);
     }
     
     private static ArrayList<Integer> converInts(String[] flags){
